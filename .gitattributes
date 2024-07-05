@@ -6,3 +6,4 @@
 * .xml linguist-detectable=false
 * .yaml linguist-detectable=false
 * .json linguist-detectable=false
+* .dart linguist-detectable=true
