@@ -32,6 +32,7 @@ class _Expense extends State<Expense> {
 
   void _openExpense() {
     showModalBottomSheet(
+      useSafeArea: true,
       isScrollControlled: true,
       context: context,
       builder: ((context) => AddExpense(
@@ -71,6 +72,9 @@ class _Expense extends State<Expense> {
 
   @override
   Widget build(BuildContext context) {
+    final orientation = MediaQuery.of(context).orientation;
+    final width = MediaQuery.of(context).size.width;
+
     Widget mainContent = const Expanded(
       child: Center(
         child: Text('empty list'),
@@ -94,14 +98,25 @@ class _Expense extends State<Expense> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Chart(
-            expenses: _registeredExpense,
-          ),
-          mainContent,
-        ],
-      ),
+      body: orientation == Orientation.landscape && width >= 600
+          ? Row(
+              children: [
+                Expanded(
+                  child: Chart(
+                    expenses: _registeredExpense,
+                  ),
+                ),
+                mainContent,
+              ],
+            )
+          : Column(
+              children: [
+                Chart(
+                  expenses: _registeredExpense,
+                ),
+                mainContent,
+              ],
+            ),
     );
   }
 }

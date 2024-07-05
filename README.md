@@ -9,3 +9,5 @@
 - Dialog
 - BottomSheet
 - Dismissable
+- Device orientation
+- Adaptive widget (Checking platform android/ios)
